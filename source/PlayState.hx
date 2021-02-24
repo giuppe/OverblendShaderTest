@@ -1,5 +1,6 @@
 package;
 
+import flixel.tweens.FlxTween;
 import flixel.math.FlxPoint;
 import flixel.util.FlxSpriteUtil;
 import flixel.group.FlxGroup;
@@ -15,7 +16,7 @@ class PlayState extends FlxState
 {
 	private var sunSprite:FlxSprite;
 	private var buildingsGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
-
+	private var sunPower:Float = 1.0;
 	private var overShader:OverblendShader;
 	private var overShaderBg:OverblendShader;
 	private var shaderMask:FlxShaderMaskCamera;
@@ -32,11 +33,11 @@ class PlayState extends FlxState
 		add(bg);
 
 		sunSprite = new FlxSprite();
-		sunSprite.makeGraphic(50, 50, FlxColor.TRANSPARENT);
+		sunSprite.makeGraphic(20, 20, FlxColor.TRANSPARENT);
 		var sunShape:Shape = new Shape();
 
 		sunShape.graphics.beginFill(0xFFEECC);
-		sunShape.graphics.drawCircle(25, 25, 25);
+		sunShape.graphics.drawCircle(10, 10, 10);
 		sunShape.graphics.endFill();
 		sunSprite.graphic.bitmap.draw(sunShape);
 		add(sunSprite);
@@ -92,6 +93,7 @@ class PlayState extends FlxState
 		overShader.sunRadius.value = [0.1];
 		overShaderBg.sunPosition.value = [FlxG.mouse.screenX / 512, FlxG.mouse.screenY / 512];
 		overShaderBg.sunRadius.value = [0.1];
+
 		var collision:Bool = false;
 		buildingsGroup.forEach((s:FlxSprite) ->
 		{
@@ -102,13 +104,13 @@ class PlayState extends FlxState
 		});
 		if (collision == true)
 		{
-			overShader.enabled.value = [0.0];
-			overShaderBg.enabled.value = [1.0];
+			overShader.power.value = [0.0];
+			overShaderBg.power.value = [1.0];
 		}
 		else
 		{
-			overShaderBg.enabled.value = [0.0];
-			overShader.enabled.value = [1.0];
+			overShaderBg.power.value = [0.0];
+			overShader.power.value = [1.0];
 		}
 	}
 }
