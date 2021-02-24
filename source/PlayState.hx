@@ -1,5 +1,7 @@
 package;
 
+import lime.graphics.RenderContextType;
+import openfl.display.BitmapData;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxPoint;
 import flixel.util.FlxSpriteUtil;
@@ -29,7 +31,11 @@ class PlayState extends FlxState
 		FlxG.mouse.load(new FlxSprite().makeGraphic(1, 1));
 
 		var bg = new FlxSprite();
-		bg.loadGraphic("assets/brick-0207.jpg");
+		bg.makeGraphic(512, 512, FlxColor.TRANSPARENT);
+		var bgGradient = new Shape();
+		bgGradient.graphics.beginGradientFill(openfl.display.GradientType.LINEAR, [0xFF5511, 0xFFEE88], [1.0, 1.0], [0, 255]);
+		bgGradient.graphics.drawRect(0, 0, 512, 512);
+		bg.graphic.bitmap.draw(bgGradient);
 		add(bg);
 
 		sunSprite = new FlxSprite();
