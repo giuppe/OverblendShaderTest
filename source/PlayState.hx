@@ -42,7 +42,7 @@ class PlayState extends FlxState
 		sunSprite.makeGraphic(20, 20, FlxColor.TRANSPARENT);
 		var sunShape:Shape = new Shape();
 
-		sunShape.graphics.beginFill(0xFFEECC);
+		sunShape.graphics.beginFill(0xFFFFFF);
 		sunShape.graphics.drawCircle(10, 10, 10);
 		sunShape.graphics.endFill();
 		sunSprite.graphic.bitmap.draw(sunShape);
