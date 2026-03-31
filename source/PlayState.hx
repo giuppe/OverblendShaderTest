@@ -101,7 +101,7 @@ class PlayState extends FlxState
 		overShaderBg.sunRadius.value = [0.1];
 
 		var collision:Bool = false;
-		buildingsGroup.forEach((s:FlxSprite) ->
+		buildingsGroup.forEach(function(s:FlxSprite)
 		{
 			if (s.overlapsPoint(new FlxPoint(FlxG.mouse.screenX, FlxG.mouse.screenY)))
 			{
